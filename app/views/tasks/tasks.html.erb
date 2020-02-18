@@ -1,0 +1,12 @@
+<h1>My Tasks</h1>
+
+<% @tasks.each do |task| %>
+  <% task.completed ? logo = "far fa-check-square" : logo = "far fa-square" %>
+  <p><div class="<%= logo %>"><%= link_to task.title, task_path(task.id) %></div></p>
+  <%= link_to "Delete task",
+              task_delete_path(task),
+              method: :delete,
+              data: { confirm: "Delete #{task.title}?" } %>
+<% end %>
+<br>
+<%= link_to "Create new task", tasks_new_path %>
